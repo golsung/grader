@@ -1,0 +1,65 @@
+
+  <!--<form (ngSubmit)="onRegStudent()" [formGroup]="studentForm" >
+  <div class="container-fluid" style="margin: 50px" > 
+      <h2 > {{_selectedCourse.name}} 학생 등록</h2>
+  <fieldset class="mx-5 mb-5 p-3 rounded">
+      <table class="table table-striped">
+          <tr>
+              <td><label>학번</label></td>
+              <td><input type="text" name="StudentId"  formControlName="sid" class="form-control" required/></td>
+          </tr>
+          <tr>
+              <td><label>이름</label></td>
+              <td><input type="text" name="StudentName"  formControlName="name" class="form-control"  required/></td>
+          </tr>
+          <tr>
+              <td><label>이메일</label></td>
+              <td><input type="text" name="StudentEmail"   formControlName="email" class="form-control" required/></td>
+          </tr>
+          <tr ><td colspan=2>
+              <button   type="submit"  [disabled]="!studentForm.valid"  >등록</button>  
+              <button   (click)="studentForm.reset()" >취소</button>  
+          
+      </table>
+    </fieldset>
+  </div>
+</form>-->
+<form (ngSubmit)="OnRegStudent()" [formGroup]="studentForm" >
+    <div class="container-fluid" style="margin: 50px" > 
+  <h2>학생등록 ({{_selectedCourse.code}})</h2>
+ 
+<fieldset class="mx-5 mb-5 p-3 rounded">
+    <table class="table table-striped">
+        <tr>
+            <td><label>학번</label></td>
+            <td><input type="text" name="StudentId"  formControlName="sid" class="form-control" required/></td>
+        </tr>
+        <tr>
+            <td><label>이름</label></td>
+            <td><input type="text" name="StudentName"  formControlName="name" class="form-control"  required/></td>
+        </tr>
+        <tr>
+            <td><label>이메일</label></td>
+            <td><input type="text" name="StudentEmail"   formControlName="email" class="form-control" required/></td>
+        </tr>
+        <tr >
+          <td colspan=2>
+            <button   type="submit"  [disabled]="!studentForm.valid"  >등록</button>  
+           <button   (click)="studentForm.reset()" >취소</button>  
+            </td>
+        </tr>
+        
+    </table>
+  </fieldset>
+  </div>
+</form>
+
+<fieldset class="mx-5 mb-5 p-3 rounded"  *ngIf="newStudent">
+    <table name="studentList" class="table table-striped" style="margin: 60px" >
+      <tr><th> 학번</th> <th>이름</th><th>이메일</th></tr>
+      <tr  >
+          <td>{{newStudent.sid}}</td> <td>{{newStudent.name}}</td> <td>{{newStudent.email}}</td>
+      
+      </tr>
+    </table> 
+  </fieldset>

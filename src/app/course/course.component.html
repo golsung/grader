@@ -1,0 +1,52 @@
+<app-reg [course]="selectedCourse" *ngIf="selectedCourse"></app-reg> 
+<!--<app-reg course="selectedCourse.id" *ngIf="selectedCourse"></app-reg>-->
+<form (ngSubmit)="onReg()" [formGroup]="courseForm" *ngIf="!selectedCourse">
+    <div class="container-fluid" style="margin: 50px" > 
+      <h2 > 교과목 등록</h2>
+      <fieldset class="mx-5 mb-5 p-3 rounded">
+          <table class="table table-striped">
+              <tr>
+                  <td><label>과목코드</label></td>
+                  <td><input type="text" name="CourseCode" formControlName="code" class="form-control" required /></td>
+              </tr>
+              <tr>
+                  <td><label>과목명</label></td>
+                  <td><input type="text" name="CourseName" formControlName="name" class="form-control"  required/></td>
+              </tr>
+              <tr>
+                <td><label>과목개요</label></td>
+                <td><textarea  name="CourseDesc"  rows="4" cols="50" class="form-control"  formControlName="overview" required></textarea></td>
+            </tr>
+            <tr></tr>
+            <tr ><td colspan="1">
+                <button  type="submit" *ngIf="!courseIdToUpdate" [disabled]="!courseForm.valid"  >CREATE</button>  
+                <button *ngIf="courseIdToUpdate">UPDATE</button>  
+                <button (click)="backToCreateCourse()" *ngIf="courseIdToUpdate">Go Back</button>  
+              </td>
+              <td> <div *ngIf="statusCode === 409" [ngClass] = "'error'">
+                  Course  already exists.
+                </div> </td>
+            
+            </tr>
+             
+          </table>
+        </fieldset>
+    </div>
+  </form> 
+
+  
+  <fieldset class="mx-5 mb-5 p-3 rounded"  *ngIf="!selectedCourse">
+    <table name="courseList" class="table table-striped" style="margin: 60px" >
+      <tr><th> 과목코드</th> <th>과목명</th><th>과목개요</th></tr>
+      <tr *ngFor="let course of allCourses" >
+          <td>{{course.code}}</td> <td>{{course.name}}</td> <td>{{course.overview}}</td>
+          <td><button type="button" (click)="studentRegistration(course)">학생등록</button></td>
+          <td><button type="button" (click)="loadCourseToEdit(course.id)">편집</button> </td> 
+          <td><button type="button" (click)="deleteCourse(course.id)">삭제</button></td>
+      </tr>
+    </table> 
+  </fieldset>
+ 
+
+
+  
